@@ -1,1 +1,38 @@
 <!DOCTYPE html>
+<meta charset="UTF-8" />
+<html>
+<head>
+        <style>
+                table {
+                  border-collapse: collapse;
+                }
+                
+                table, th, td {
+                  border: 1px solid black;
+                }
+                
+                th, td {
+                  padding: 5px;
+                }
+                </style> 
+    <title>Food Hygeine Ratings</title>
+    <body>
+        <header>Food Hygeine</header>
+        <p>Restarant Locaion with names</p>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://www.cs.kent.ac.uk/people/staff/sm951/co539/assessment2/hygiene.php"></script>
+        <script type="text/javascript">
+        var newRequest = new XMLHttpRequest();
+        newRequest.open('GET', 'https://www.cs.kent.ac.uk/people/staff/sm951/co539/assessment2/hygiene.php')
+        newRequest.onload = function() {
+         var restarantData = JSON.parse(newRequest.responseText);
+         console.log(restarantData[0]);
+        };
+        newRequest.send();
+
+        </script>
+
+    </body>
+
+</head>
+</html>
