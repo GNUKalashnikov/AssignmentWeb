@@ -2,36 +2,42 @@
 <meta charset="UTF-8" />
 <html>
 <head>
-        <style>
-                table {
-                  border-collapse: collapse;
-                }
-                
-                table, th, td {
-                  border: 1px solid black;
-                }
-                
-                th, td {
-                  padding: 5px;
-                }
-                </style> 
+    
+    <script rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css"></script>
     <title>Food Hygeine Ratings</title>
     <body>
         <header>Food Hygeine</header>
         <p>Restarant Locaion with names</p>
+        <table class="table" id ="res_Table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Address</th> 
+                    <th>Rating</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://www.cs.kent.ac.uk/people/staff/sm951/co539/assessment2/hygiene.php"></script>
         <script type="text/javascript">
-        var newRequest = new XMLHttpRequest();
-        newRequest.open('GET', 'https://www.cs.kent.ac.uk/people/staff/sm951/co539/assessment2/hygiene.php')
-        newRequest.onload = function() {
-         var restarantData = JSON.parse(newRequest.responseText);
-         console.log(restarantData[0]);
-        };
-        newRequest.send();
+         $(document).ready(function(){
+          $pageNum = 1;
+             $.get("https://www.cs.kent.ac.uk/people/staff/sm951/co539/assessment2/hygiene.php?operation=get&page=" + $pageNum, function(data) {
+          var tr;
+          for(var i = 0; i < data.length; i++){
+           tr = $('<tr/>');
+           tr.append("<td>" + data[i].name + "</td>");
+           tr.append("<td>" + data[i].addressLine + "</td>");
+           tr.append("<td>" + data[i].hygieneRating + "</td>");
+        $('#res_Table').append(tr);
+      }
+    });
+  });
 
-        </script>
-
+        
+  </script>
     </body>
 
 </head>
